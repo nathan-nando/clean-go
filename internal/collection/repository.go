@@ -2,7 +2,7 @@ package collection
 
 import (
 	"context"
-	"template-go/model"
+	"template-go/internal/model"
 )
 
 type Repository interface {

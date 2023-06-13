@@ -1,9 +1,9 @@
 package main
 
 import (
+	"template-go/app"
 	"template-go/cmd"
 	"template-go/config"
-	"template-go/internal/app"
 )
 
 func main() {
@@ -13,6 +13,12 @@ func main() {
 	//After get mode, Get config from config/xx.yaml
 	cfg := config.NewConfig(mode.AppMode)
 
-	//Run app
-	app.Run(cfg)
+	//Send dbMode to app
+	dbMode := mode.DbMode
+
+	//Setup app
+	api := app.New(cfg, dbMode)
+
+	//Run server
+	app.Run(api)
 }

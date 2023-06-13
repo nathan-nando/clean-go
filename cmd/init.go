@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type mode struct {
+type Mode struct {
 	AppMode string
 	DbMode  string
 }
@@ -15,7 +15,7 @@ var rootCmd = &cobra.Command{Run: func(cmd *cobra.Command, args []string) {
 },
 }
 
-func Init() *mode {
+func Init() *Mode {
 	appCmd.Flags().String("appMode", "local", "SELECT APP MODE")
 	appCmd.Flags().String("dbMode", "mysql", "SELECT DB MODE")
 	rootCmd.AddCommand(appCmd)
@@ -26,7 +26,7 @@ func Init() *mode {
 		logrus.Error(err)
 	}
 
-	return &mode{
+	return &Mode{
 		AppMode: appCmd.Flag("appMode").Value.String(),
 		DbMode:  appCmd.Flag("dbMode").Value.String(),
 	}
